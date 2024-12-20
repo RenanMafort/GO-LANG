@@ -2,23 +2,28 @@ package main
 
 import "fmt"
 
+func recuperar() {
+	if r := recover(); r != nil {
+		fmt.Println("A aplicação conseguiu recuperar")
+	}
+}
+
 func isAproved(nota float32) bool {
+	defer recuperar()
 	fmt.Println("Calculando a media do aluno")
 
 	media := (nota + nota) / 2
 
-	defer fmt.Println("Fim do calcular nota")
 	if media > 6 {
-		fmt.Println("Aluno aprovado")
 		return true
+	} else if media < 6 {
+		return false
 	}
-	fmt.Println("Aluno reprovado")
-	return false
 
+	panic("A aplicação entrou em panico")
 }
 
 func main() {
-	defer fmt.Println("Fim do metodo main") //DEFER ADIA A EXECUÇÃO DEIXANDO POR ULTIMO
 
-	fmt.Println(isAproved(10))
+	fmt.Println(isAproved(6))
 }
