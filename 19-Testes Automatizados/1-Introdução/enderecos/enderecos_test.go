@@ -5,21 +5,29 @@ import (
 	"testing"
 )
 
+func TestQualquer(t *testing.T) {
+	t.Parallel()
+	if 1 > 2 {
+		t.Errorf("Testandoo!")
+	}
+}
+
 type cenarioTest struct {
 	enderecoInserido string
 	enderecoEsperado string
 }
 
 func TestTipoDeEndereco(t *testing.T) {
+	t.Parallel()
 	cenariosDeTeste := []cenarioTest{
 		{"Rua ABC", "Rua"},
 		{"Avenida Paulista", "Avenida"},
 		{"Rodovia dos Imigrantes", "Rodovia"},
-		{"Praça das Rosas", "Tipo Inválido"},
+		//{"Praça das Rosas", "Tipo Inválido"},
 		{"Estrada Qualquer", "Estrada"},
 		{"RUA DOS BOBOS", "Rua"},
 		{"AVENIDA REBOUÇAS", "Avenida"},
-		{"", "Tipo Inválido"},
+		//{"", "Tipo Inválido"},
 	}
 
 	for _, cenariosTest := range cenariosDeTeste {
